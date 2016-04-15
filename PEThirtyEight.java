@@ -17,9 +17,6 @@ What is the largest 1 to 9 pandigital 9-digit number that can be
 formed as the concatenated product of an integer with (1,2, ... , n)
 where n > 1?
 */
-import java.util.*;
-//import java.util.Set;
-//import java.util.HashSet;
 
 public class PEThirtyEight {
   private static Integer[] pandigit = new Integer[9];
@@ -153,43 +150,5 @@ public class PEThirtyEight {
       }
     }
     return false;
-  }
-
-  /* Turn `num` into an Integer[] of its digits.  Depreciated. */
-  private static Integer[] getDigits(int num){
-    ArrayList<Integer> digits = new ArrayList<Integer>();
-      int i;
-      while (num > 0){
-        digits.add(num % 10);
-        num = num / 10;
-      }
-      Integer[] backwards = digits.toArray(new Integer[digits.size()]);
-      Integer[] forwards = new Integer[backwards.length];
-      for (i = 0; i < backwards.length; i++) {
-        forwards[i] = backwards[backwards.length-i-1];
-      }
-      return forwards;
-  }
-
-  /* Determine if `product` is a pandigit.  Depreciated.  */
-  private static boolean isPandig (int product) {
-    // first, get the digits:
-    Set<Integer> digits = new HashSet<Integer>();
-    int i;
-    while (product > 0){
-      i = product % 10;
-      if (digits.contains(i)) {
-        // System.out.println("There's repetition");
-        return false;
-      }
-      product = product / 10;
-      digits.add(i);
-    }
-    if ((digits.size() < 9) || (digits.contains(new Integer(0)))) {
-      // System.out.println("There are missing or bad digits");
-      return false;
-    }
-    // It's pandigital
-    return true;
   }
 }
