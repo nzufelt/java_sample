@@ -1,26 +1,37 @@
 import java.lang.Math;
 
-public class Node{
-  private int value;
-  private int largest_path;
-  private int row; // for debugging
-  public Node lChild;
-  public Node rChild;
+/** The implementation of a Node in a binary triangle (i.e. a binary tree
+with node.left.right == node.right.left for all nodes), for Nicholas
+Zufelt's solution to project euler problem 67.
+*/
+public class Node {
+    private int value;
+    private int largestPath;
+    public Node left;
+    public Node right;
 
-  public Node(int new_value){
-    value = new_value;
-    largest_path = 0;
-  }
+    /** Built a new Node object.  Called as the child of a previous node, or
+    defined as root.  Must be manually set to have the triangle property (see
+    class Javadoc).
 
-  /* Attempt to set the largest path to this node.  This will only set
-  `largest_path` if `above_path` (i.e. one parent's `largest_path`) is
-  larger than `largest_path`.
-  */
-  public void set_largest_path(int above_path) {
-    largest_path = Math.max(largest_path, value + above_path);
-  }
+    @param newValue the value of the node, not the value of the largest path
+    */
+    public Node(int newValue) {
+        value = newValue;
+        largestPath = 0;
+    }
 
-  public int get_largest_path(){
-    return largest_path;
-  }
+    /** Attempt to set the largest path to this node.  This will only set
+    `largestPath` if `abovePath` (i.e. one parent's `largestPath`) is
+    larger than `largestPath`.
+
+    @param abovePath the largest path to the parent calling this Node
+    */
+    public void setLargestPath(int abovePath) {
+        largestPath = Math.max(largestPath, value + abovePath);
+    }
+
+    public int getLargestPath() {
+        return largestPath;
+    }
 }
